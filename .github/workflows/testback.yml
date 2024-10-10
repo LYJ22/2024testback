@@ -19,4 +19,4 @@ jobs:
       - name: git hello
         run: |
           echo "git hello"
-          echo :hallo world"
+          echo "hello world"
