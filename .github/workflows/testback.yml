@@ -3,10 +3,12 @@ name: testback deployment
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
   build:
     name: testback build & deploy
     runs-on: ubuntu-latest
+
+    steps:
+      - name: github action
+        run: echo "github action"
