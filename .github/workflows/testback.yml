@@ -24,4 +24,4 @@ jobs:
       - name: github actions
         run: |
           echo $GITHUB_SHA
-          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
