@@ -25,3 +25,7 @@ jobs:
         run: |
           echo $GITHUB_SHA
           echo $GITHUB_REPOSITORY
+
+      - name: github secret
+        run: |
+          echo ${{ secrets.MY_HOBBY }}
