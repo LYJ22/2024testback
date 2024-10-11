@@ -17,7 +17,9 @@ jobs:
           script_stop: true
           script: |
             cd /home/2024testback
+            git config --global --add safe.directory /home/2024testback
             git pull origin main
+            chmod +x gradlew
             ./gradlew bootwar
             sudo fuser -k -n tcp 8080 || true
             sudo nohup java -jar build/libs/*SNAPSHOT.war > ./output.log 2>&1 &
