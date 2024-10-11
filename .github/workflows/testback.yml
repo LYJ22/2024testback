@@ -1,31 +1,23 @@
-name: testback deployment
-
+name: deploy to ec2
 on:
   push:
     branches: ["main"]
 
 jobs:
-  build:
-    name: testback build & deploy
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: github action
-        run: echo "github action"
-
-      - name: hello
-        run: echo "hello world"
-
-      - name: git hello
-        run: |
-          echo "git hello"
-          echo "hello world"
-
-      - name: github actions
-        run: |
-          echo $GITHUB_SHA
-          echo $GITHUB_REPOSITORY
-
-      - name: github secret
-        run: |
-          echo ${{ secrets.MY_HOBBY }}
+      - name: ssh로 ec2 접속하기
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script_stop: true
+          script: |
+            cd /home/ubuntu/2024springboot
+            git pull origin main
+            ./gradlew bootwar
+            sudo fuser -k -n tcp 8080 || true
+            sudo nohup java -jar build/libs/*SNAPSHOT.war > ./output.log 2>&1 &
