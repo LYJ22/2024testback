@@ -103,7 +103,7 @@ public class FoodService {
 		
 		List<MenuEntity> menus = menurepository.findAllByFoodId(foodId);
 		return FoodDetailView.builder()
-				.id(0L)
+				.id(food.getId())
 				.name(food.getName())
 				.address(food.getAddress())
 				.createdAt(food.getCreateAt())
