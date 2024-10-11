@@ -17,7 +17,7 @@ jobs:
             cd /home/ubuntu/2024testback
             git config --global --add safe.directory /home/ubuntu/2024testback
             sudo git pull origin main
-            chmod +x gradlew
+            sudo chmod +x gradlew
             ./gradlew bootwar
             sudo fuser -k -n tcp 8080 
             nohup java -jar build/libs/*SNAPSHOT.war > /dev/null 2>&1 &
